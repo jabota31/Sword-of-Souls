@@ -5,11 +5,9 @@ import com.jabota31.sos.SwordOfSouls
 import com.jabota31.sos.components.GraphicComponent
 import com.jabota31.sos.components.TransformComponent
 import ktx.ashley.entity
-import ktx.ashley.get
 import ktx.ashley.with
 import ktx.assets.disposeSafely
 import ktx.assets.toInternalFile
-import ktx.graphics.use
 
 class FirstScreen(game: SwordOfSouls) : SwordOfSoulsScreen(game) {
     private val image = Texture("logo.png".toInternalFile()).apply {
@@ -28,26 +26,8 @@ class FirstScreen(game: SwordOfSouls) : SwordOfSoulsScreen(game) {
         }
     }
 
-    override fun resize(width: Int, height: Int) {
-        gameViewport.update(width, height, true)
-    }
-
     override fun render(delta: Float) {
         engine.update(delta)
-        gameViewport.apply()
-
-        batch.use(gameViewport.camera.combined) {
-            batch
-            player[GraphicComponent.mapper]?.let { graphic ->
-                player[TransformComponent.mapper]?.let { transform ->
-                    graphic.sprite.run {
-                        rotation = transform.rotationDeg
-                        setBounds(transform.position.x, transform.position.y, transform.size.x, transform.size.y)
-                        draw(batch)
-                    }
-                }
-            }
-        }
     }
 
     override fun dispose() {

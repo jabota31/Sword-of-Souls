@@ -12,5 +12,7 @@ abstract class SwordOfSoulsScreen(
     val gameViewport: FitViewport = game.gameViewport,
     val engine: Engine = game.engine
 ) : KtxScreen {
-
+    override fun resize(width: Int, height: Int) {
+        gameViewport.update(width, height, true)
+    }
 }
