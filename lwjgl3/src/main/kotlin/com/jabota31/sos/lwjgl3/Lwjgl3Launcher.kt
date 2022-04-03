@@ -7,7 +7,7 @@ import com.jabota31.sos.SwordOfSouls
 fun main() {
     Lwjgl3Application(SwordOfSouls(), Lwjgl3ApplicationConfiguration().apply {
         setTitle("SwordOfSouls")
-        setWindowedMode(640, 480)
+        setWindowedMode(16 * 64, 9 * 64)
         setWindowIcon(*(arrayOf(128, 64, 32, 16).map { "libgdx$it.png" }.toTypedArray()))
     })
 }
