@@ -2,6 +2,7 @@ package com.jabota31.sos.components
 
 import com.badlogic.ashley.core.Component
 import com.badlogic.gdx.graphics.g2d.Sprite
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.utils.Pool.Poolable
 import ktx.ashley.mapperFor
 
@@ -11,6 +12,10 @@ class GraphicComponent : Component, Poolable {
     override fun reset() {
         sprite.texture = null
         sprite.setColor(1f, 1f, 1f, 1f)
+    }
+
+    fun setSpriteRegion(frame: TextureRegion?) {
+        sprite.setRegion(frame)
     }
 
     companion object {
