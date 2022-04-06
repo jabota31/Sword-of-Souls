@@ -13,6 +13,8 @@ import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
 
 const val UNIT_SCALE = 1 / 64f
+const val V_WIDTH = 16f
+const val V_HEIGHT = 9f
 
 class SwordOfSouls : KtxGame<KtxScreen>() {
     val batch by lazy { SpriteBatch() }
