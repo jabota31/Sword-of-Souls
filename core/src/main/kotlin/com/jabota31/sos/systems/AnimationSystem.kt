@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.utils.GdxRuntimeException
 import com.jabota31.sos.components.Animation2D
 import com.jabota31.sos.components.AnimationComponent
-import com.jabota31.sos.components.AnimationType
 import com.jabota31.sos.components.GraphicComponent
+import com.jabota31.sos.enums.ANIMATION
 import ktx.ashley.allOf
 import ktx.ashley.get
 import java.util.EnumMap
@@ -18,7 +18,7 @@ import java.util.EnumMap
 class AnimationSystem(private val atlas: TextureAtlas) : IteratingSystem(
     allOf(AnimationComponent::class, GraphicComponent::class).get()
 ), EntityListener {
-    private val animationCache = EnumMap<AnimationType, Animation2D>(AnimationType::class.java)
+    private val animationCache = EnumMap<ANIMATION, Animation2D>(ANIMATION::class.java)
 
     override fun addedToEngine(engine: Engine) {
         super.addedToEngine(engine)
@@ -40,7 +40,7 @@ class AnimationSystem(private val atlas: TextureAtlas) : IteratingSystem(
         }
     }
 
-    private fun getAnimation(type: AnimationType): Animation2D {
+    private fun getAnimation(type: ANIMATION): Animation2D {
         var animation = animationCache[type]
         if (animation == null) {
             var regions = atlas.findRegions(type.atlasKey)
@@ -62,7 +62,7 @@ class AnimationSystem(private val atlas: TextureAtlas) : IteratingSystem(
         val graphicComponent = entity[GraphicComponent.mapper]
         require(graphicComponent != null) { "GraphicComponent not found" }
 
-        if (animationComponent.type == AnimationType.IDLE) return
+        if (animationComponent.type == ANIMATION.IDLE) return
 
         if (animationComponent.type == animationComponent.animation.type) {
             animationComponent.stateTime += deltaTime

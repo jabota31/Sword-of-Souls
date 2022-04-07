@@ -1,11 +1,10 @@
 package com.jabota31.sos.screens
 
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.math.Vector2
 import com.jabota31.sos.SwordOfSouls
-import com.jabota31.sos.components.AnimationComponent
-import com.jabota31.sos.components.AnimationType
-import com.jabota31.sos.components.GraphicComponent
-import com.jabota31.sos.components.TransformComponent
+import com.jabota31.sos.components.*
+import com.jabota31.sos.enums.ANIMATION
 import ktx.ashley.entity
 import ktx.ashley.with
 import ktx.assets.disposeSafely
@@ -23,9 +22,13 @@ class FirstScreen(game: SwordOfSouls) : SwordOfSoulsScreen(game) {
                 size.set(1f, 1f)
             }
             with<AnimationComponent> {
-                type = AnimationType.WALK
+                type = ANIMATION.WALK_DOWN
             }
             with<GraphicComponent>()
+            with<MoveComponent> {
+                speed.set(Vector2.Zero)
+            }
+            with<UserInputComponent>()
         }
     }
 
